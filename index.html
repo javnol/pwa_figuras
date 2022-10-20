@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PWA - 20/10/22</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="manifiesto.json">
+        <link rel="stylesheet" href="w3.css">
+    </head>
+    <body>
+        <div class="w3-container w3-teal">
+            <div class="w3-row">
+                <div class="w3-col s12 w3-yellow w3-center">
+                    <p>Muestra figuras gráficas.</p>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="w3-col s3 w3-green w3-center">
+                    <select id="tipofig">
+                        <option value="1">Rectángulo</option>
+                        <option value="2">Círculo</option>
+                        <option value="3">Triángulo</option>
+                    </select> <br />
+                    base: <input type="text" id="txtbase" required size="1" minlength="4" maxlength="8">
+                    altura: <input type="text" id="txtaltura" required size="1">
+                    radio: <input type="text" id="txtradio" required size="1"> <br /><br />
+                    Puntos P1(x1, y1), P2(x2, y2) y P3(x3, y3) del triángulo: <br />
+                    x1: <input type="text" id="txtx1" required size="1">
+                    y1: <input type="text" id="txty1" required size="1"> <br /> <br />
+                    x2: <input type="text" id="txtx2" required size="1"> 
+                    y2: <input type="text" id="txty2" required size="1"> <br /> <br />
+                    x3: <input type="text" id="txtx3" required size="1">
+                    y3: <input type="text" id="txty3" required size="1"> <br /> <br />
+                    <input type="submit" id="btnDibujar" value="Dibujar"> <br /> 
+                    <div id="solucion">
+                    </div>
+                </div>
+                <div class="w3-col s9 w3-white w3-center">
+                    <div id="contenido"></div>
+                    <!-- <canvas id="canvas" width="800" height="400" style="border:1px solid #FF0000;"></canvas>-->
+                    <canvas id="canvas" width="800" height="400"></canvas> <br />
+                </div>
+            </div>
+        </div>
+
+        <script src="fig.js"></script>
+        <script>
+            if('serviceWorker' in navigator){
+                navigator.serviceWorker.register('sw.js')
+                .then(
+                    function(registration){
+                        alert('Reg. satisfactorio del sw');
+                        console.log('Reg. satisfactorio del sw en el ámbito: ',
+                                    registration.scope);
+                    }
+                ).catch(
+                    function(err){
+                        alert('El SW no se registró');
+                        console.log('El SW no se registró', err);
+                    }
+                );
+            }
+        </script>
+    </body>
+</html>
